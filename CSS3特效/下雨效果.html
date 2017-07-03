@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        body{
+            background: #000;
+        }
+        /*雨滴效果*/
+        /*线条盒子 ，渐变*/
+         div{
+            width: 1px;
+            height: 150px;
+            background: #fff;
+            position: absolute;
+            background: -webkit-linear-gradient(top,
+            rgba(255,255,255,0) 0%,
+            rgba(255,255,255,0.3) 20%,
+            rgba(255,255,255,0.7) 100%);
+            border-radius: 4px ;
+
+        }
+        /*水波效果*/
+          span{
+             width: 200px;
+             height: 200px;
+             border: 1px solid #fff;
+             position: absolute;
+             transform: rotateX(65deg);
+             border-radius: 50%;
+             /*-webkit-animation: bigger 1s     infinite;*/
+              transform: scale(0);
+
+         }
+
+
+
+    /*两个下雨效果，随机一个*/
+        /*@-webkit-keyframes cc1{*/
+            /*0%{*/
+                /*transform: translate(0,0)  rotate(45deg) ;*/
+            /*}*/
+
+
+            /*100%{*/
+                /*transform:  translate(-1400px,1400px)  rotate(45deg);*/
+            /*}*/
+        /*}*/
+
+        /*@-webkit-keyframes cc2{*/
+            /*0%{*/
+                /*transform: translate(0,0)  rotate(45deg) ;*/
+            /*}*/
+
+
+            /*100%{*/
+                /*transform:  translate(-900px,900px)  rotate(45deg);*/
+            /*}*/
+        /*}*/
+        /*两个水波效果，随机一个*/
+        @-webkit-keyframes bigger1{
+            0%{
+                transform:    rotateX(65deg) scale(0.1) ;
+            }
+
+
+            100%{
+                transform:     rotateX(65deg) scale(1);
+            }
+        }
+
+        @-webkit-keyframes bigger2{
+            0%{
+                transform:    rotateX(65deg) scale(0.1) ;
+            }
+
+
+            100%{
+                transform:     rotateX(65deg) scale(0.7);
+            }
+        }
+
+
+    </style>
+    <script>
+        window.onload=function(){
+            var str="";
+            var str1="";
+//            获取屏幕的宽高
+            var W=document.documentElement.clientWidth;
+            var H=document.documentElement.clientHeight;
+//            动态生成 盒子
+           for(var i=0;i<60;i++){
+                str+="<div></div>"
+           }
+            for(var i=0;i<20;i++){
+                str1+="<span></span>";
+            }
+
+
+            document.body.innerHTML=str+str1;
+
+//        随机生成 盒子的坐标
+            var rains=document.body.getElementsByTagName('div');
+            var cs=document.body.getElementsByTagName('span')
+
+            for(var i=0;i<rains.length;i++){
+//                透明度和宽高
+                rains[i].style.left=i*50+'px';
+                var num=parseInt(Math.random()*-600)-100;
+                rains[i].style.top=num+'px';
+                rains[i].style.opacity=Math.random();
+//             动画
+                if(i%2==0){
+                    rains[i].style.webkitAnimation='cc1 2s '+Math.random()*2+'s infinite';
+                }else{
+                    rains[i].style.webkitAnimation='cc2 0.4s '+Math.random()*2+'s infinite';
+                }
+            }
+
+            for(var i=0;i<cs.length;i++){
+//                透明度和宽高
+                cs[i].style.opacity=Math.random();
+                cs[i].style.left=parseInt(Math.random()*W)+'px';
+                cs[i].style.top=parseInt(Math.random()*600+300)+'px';
+//                动画
+                if(i%2==0){
+                    cs[i].style.webkitAnimation='bigger1 1s '+Math.random()*2+'s infinite';
+                }else{
+                    cs[i].style.webkitAnimation='bigger2 0.4s '+Math.random()*2+'s infinite';
+                }
+
+            }
+        }
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

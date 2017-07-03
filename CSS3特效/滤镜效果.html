@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            background: #ccc;
+        }
+        .box{
+            width: 700px;
+            margin:100px auto;
+           
+        }
+
+        .img-box{
+            float:left;
+            height: 900px;
+            width: 600px;
+            background:url(baby.png) no-repeat;
+            background-size: cover;
+
+        }
+
+        ul{
+            width: 100px;
+            float: right;
+        }
+        
+        ul li{
+            width: 100px;
+            height: 80px;
+            background: cornflowerblue;
+            margin-bottom:2px;
+            text-align: center;
+            line-height: 80px;
+            cursor: pointer;
+        }
+
+        .active{
+            background: indianred;
+        }
+
+        .filter1{
+            -webkit-filter:grayscale(0.8);
+        }
+
+        .filter2{
+            -webkit-filter:sepia(0.8);
+        }
+
+        .filter3{
+            -webkit-filter:saturate(0.4);
+        }
+
+        .filter4{
+            -webkit-filter:hue-rotate(90deg);
+        }
+
+        .filter5{
+            -webkit-filter:invert(0.8);
+        }
+
+        .filter6{
+            -webkit-filter:opacity(0.4);
+        }
+
+        .filter7{
+            -webkit-filter:brightness(0.5);
+        }
+
+        .filter8{
+            -webkit-filter:contrast(30);
+        }
+
+        .filter9{
+            -webkit-filter:blur(4px);
+        }
+
+        .filter10{
+              -webkit-filter:drop-shadow(-20px -20px 30px red );
+          }
+
+        .filter11{
+            -webkit-filter:none;
+        }
+
+
+    </style>
+
+    <script>
+        window.onload=function(){
+            var imgbox=document.getElementById('img-box');
+            var btns=document.getElementsByTagName('li');
+
+            for(var i=0;i<btns.length;i++){
+                btns[i].index=i;
+                btns[i].onclick=function(){
+                    imgbox.className="img-box filter"+(this.index+1);
+
+                    for(var j=0; j<btns.length;j++){
+                        btns[j].className='';
+                    }
+                    this.className='active';
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        <div class="img-box" id="img-box"></div>
+        <ul>
+            <li>灰度</li>
+            <li>褐色</li>
+            <li>饱和度</li>
+            <li>色相旋转</li>
+            <li>反色</li>
+            <li>透明度</li>
+            <li>亮度</li>
+            <li>对比度</li>
+            <li>模糊</li>
+            <li>阴影</li>
+            <li>正常</li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>向梦想出发吧，骚年！</title>
+    <style>
+        .clock {
+            width: 300px;
+            height: 300px;
+            border: 5px solid #FE0144;
+            border-radius: 50%;
+            margin: 100px auto;
+            position: relative;
+            background-image: radial-gradient(300px at 80px 90px, pink ,#DEFF00, skyblue, #02E6FF);
+        }
+
+        /*固定位置*/
+        .clock div {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /*设置宽度和高度及背景色*/
+        .line {
+            width: 100%;
+            height: 5px;
+            background-color: #8308F7;
+        }
+
+        /*每一个旋转30度*/
+        .clock .line1 {
+            transform: translate(-50%) rotate(30deg);
+        }
+
+        .clock .line2 {
+            transform: translate(-50%) rotate(60deg);
+        }
+
+        .clock .line3 {
+            height: 8px;
+            transform: translate(-50%) rotate(90deg);
+        }
+
+        .clock .line4 {
+            transform: translate(-50%) rotate(120deg);
+        }
+
+        .clock .line5 {
+            transform: translate(-50%) rotate(150deg);
+        }
+
+        .clock .line6 {
+            height: 8px;
+        }
+
+        /*遮挡层*/
+        .cover {
+            width: 220px;
+            height: 220px;
+            background-color: #FFB900;
+            border-radius: 50%;
+            position: relative;
+
+        }
+
+        /* 笑脸*/
+        .cover::after, .cover::before {
+            content: "";
+            position: absolute;
+            left: 50px;
+            top: 60px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: deepskyblue;
+            animation: gun 1.5s infinite;
+            transform-origin: center bottom;
+            /*transform-origin: top center;*/
+        }
+
+        .cover::after {
+            left: auto;
+            right: 50px;
+        }
+
+        .cover .mouse {
+            width: 100px;
+            height: 50px;
+            position: absolute;
+            top: 140px;
+            left: 110px;
+            border-radius: 0 0 50px 50px;
+            background-color: yellow;
+        }
+
+        .cover .mouse::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            width: 50px;
+            height: 30px;
+            border-radius: 0 0 50px 50px;
+            background-color: red;
+            animation: gun 1.5s infinite;
+            transform-origin: top center;
+
+        }
+
+        @keyframes gun {
+            0% {
+                transform: rotateZ(-30deg);
+            }
+            25% {
+                transform: rotateZ(0deg);
+            }
+            50% {
+                transform: rotateZ(30deg);
+            }
+
+            75% {
+                transform: rotateZ(0deg);
+            }
+            100% {
+                transform: rotateZ(-30deg);
+            }
+
+        }
+        .second{
+            width: 2px;
+            height: 70px;
+            background-color: purple;
+            margin-top: -30px;
+            transform-origin: center bottom;
+        }
+
+        .minute {
+            width: 4px;
+            height: 60px;
+            background-color: green;
+            margin-top: -30px;
+            transform-origin: center bottom;
+        }
+
+        .hour {
+            width: 6px;
+            height: 45px;
+            background-color: darkblue;
+            margin-top: -20px;
+            transform-origin: center bottom;
+        }
+
+        .dot {
+            width: 20px;
+            height: 20px;
+            background-color: gold;
+            border-radius: 50%;
+        }
+
+        @keyframes rot {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+    </style>
+  </head>
+<body>
+<div class="clock">
+    <div class="line line1"></div>
+    <div class="line line2"></div>
+    <div class="line line3"></div>
+    <div class="line line4"></div>
+    <div class="line line5"></div>
+    <div class="line line6"></div>
+    <div class="cover">
+        <div class="mouse"></div>
+    </div>
+    <div id="ss" class="second"></div>
+    <div id="mm" class="minute"></div>
+    <div id="hh" class="hour"></div>
+    <div class="dot"></div>
+</div>
+<script>
+    var mm = document.getElementById("mm");//分针
+    var hh = document.getElementById("hh");//时针
+    var ss = document.getElementById("ss");//时针
+    function clock() {
+        var dt = new Date();
+        var ms = dt.getMilliseconds();//毫秒
+        //获得秒数
+        var s = dt.getSeconds() + ms / 1000;
+        //获得的分钟数
+        var m = dt.getMinutes() + s / 60;
+        //获得小时数
+        var h = dt.getHours() + m / 60;
+        //  旋转的角度
+        ss.style.transform = "translate(-50%, -50%) rotate(" + s* 6 + "deg)";
+        mm.style.transform = "translate(-50%, -50%) rotate(" + m * 6 + "deg)";
+        hh.style.transform = "translate(-50%, -50%) rotate(" + h * 30 + "deg)";
+    }
+    setInterval(clock);
+</script>
+</body>
+</html>
